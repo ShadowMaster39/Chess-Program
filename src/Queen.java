@@ -16,12 +16,12 @@ public class Queen extends ChessPiece{
 		}
 		xPos = square.GetXPos();
 		yPos = square.GetYPos();
-		draw(g);
+		Draw(g);
 		location.setOccupant(this);
 	}
 	
 	
-	private void draw(Graphics g){
+	public void Draw(Graphics g){
 		//Set Variables
 			int[] xSB = {xPos+22,xPos+13,xPos+31,xPos+35,xPos+46,xPos+57,xPos+61,xPos+77,xPos+69};  
 			int[] ySB = {yPos+71,yPos+25,yPos+50,yPos+17,yPos+50,yPos+17,yPos+50,yPos+25,yPos+71};

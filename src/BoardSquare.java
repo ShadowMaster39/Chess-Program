@@ -7,6 +7,7 @@ public class BoardSquare {
 	private int squareColor;
 	private boolean occupied = false;
 	private ChessPiece Occupant = null;
+	public boolean isSelected = false; 
 	
 	public BoardSquare(Graphics g, int xSquare, int ySquare, int Color){
 		xPos = xSquare;
@@ -14,6 +15,7 @@ public class BoardSquare {
 		squareColor = Color;
 		draw(g);
 	}
+	
 	private void draw(Graphics g){
 		//Declare Variables
 			Color ActColor = Color.white;
@@ -29,6 +31,7 @@ public class BoardSquare {
 			g.fillRect(xPos, yPos, 90, 90);
 		
 	}
+	
 	public int GetYPos(){
 		return yPos;
 	}
@@ -49,6 +52,23 @@ public class BoardSquare {
 	
 	public void setOccupant(ChessPiece piece){
 		Occupant = piece;
+		occupied = true;
+	}
+	
+	public void selectSquare(Graphics g){
+		g.setColor(Color.blue);
+		g.drawRect(xPos, yPos, 89, 89);
+		g.drawRect(xPos+1, yPos+1, 87, 87);
+		g.drawRect(xPos+2, yPos+2, 85, 85);
+		isSelected = true;
+	}
+	
+	public void deselectSquare(Graphics g){
+		draw(g);
+		if (occupied){
+			Occupant.Draw(g);
+		}
+		isSelected = false;
 	}
 	
 	public ChessPiece getOccupant(){
@@ -58,5 +78,6 @@ public class BoardSquare {
 	public void clearOccupant(Graphics g){
 		draw(g);
 		Occupant = null;
+		occupied=false;
 	}
 }

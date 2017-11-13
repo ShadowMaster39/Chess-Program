@@ -17,11 +17,11 @@ public class Rook extends ChessPiece{
 		}
 		xPos = square.GetXPos();
 		yPos = square.GetYPos();
-		draw(g);
+		Draw(g);
 		location.setOccupant(this);
 	}
 	
-	private void draw(Graphics g){
+	public void Draw(Graphics g){
 	//Set Variables
 		int temp = xPos + 10;
 	//Color Selector	

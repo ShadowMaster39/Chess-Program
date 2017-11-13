@@ -19,12 +19,12 @@ public class Bishop extends ChessPiece{
 		}
 		xPos = square.GetXPos();
 		yPos = square.GetYPos();
-		draw(g);
+		Draw(g);
 		location.setOccupant(this);
 	}
 	
 	
-	private void draw(Graphics g){
+	public void Draw(Graphics g){
 		//Variable Declare
 			int[] xDB = {xPos+45, xPos+25, xPos+35, xPos+55, xPos+65};
 			int[] yDB = {yPos+18, yPos+35, yPos+75, yPos+75, yPos+35};

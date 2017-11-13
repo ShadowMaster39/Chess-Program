@@ -5,6 +5,11 @@ public class ChessPiece {
 	public BoardSquare location;
 	public Color pieceColor;
 		
+	
+	public void Draw(Graphics g){
+		
+	}
+	
 	public void Move(){
 		
 	}

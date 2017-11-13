@@ -16,12 +16,12 @@ public class Pawn extends ChessPiece{
 		}
 		xPos = square.GetXPos();
 		yPos = square.GetYPos();
-		draw(g);
+		Draw(g);
 		location.setOccupant(this);
 	}
 	
 	
-	private void draw(Graphics g){
+	public void Draw(Graphics g){
 		//Set Variables
 	       int[] xFPB = {xPos+45,xPos+30,xPos+60};
 	       int[] yFPB = {yPos+32,yPos+76,yPos+76};

@@ -16,12 +16,12 @@ public class King extends ChessPiece{
 		}
 		xPos = square.GetXPos();
 		yPos = square.GetYPos();
-		draw(g);
+		Draw(g);
 		location.setOccupant(this);
 	}
 	
 	
-	private void draw(Graphics g){
+	public void Draw(Graphics g){
 		//Set Variables
 			int[] xSB = {xPos+23,xPos+23,xPos+69,xPos+69};  
 			int[] ySB = {yPos+75,yPos+55,yPos+55,yPos+75}; 
