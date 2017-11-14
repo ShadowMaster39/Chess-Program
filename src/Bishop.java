@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.*;
 
 public class Bishop extends ChessPiece{
@@ -7,6 +6,7 @@ public class Bishop extends ChessPiece{
 	private Color BishopSecondary;
 	
 	public Bishop(Graphics g, BoardSquare square, int color){
+		tempLocation = square;
 		location = square;
 		pieceColor = Color.white; 
 				if(color == 0){
@@ -41,10 +41,16 @@ public class Bishop extends ChessPiece{
 				g.setColor(BishopSecondary);
 				g.fillRect(xDB[0]-1,yDB[0]+18,3 ,21);
 				g.fillRect(xDB[0]-7,yDB[1]+7, 15, 3);
-				
-						
 	}
 	
+	public void Move(Graphics g, BoardSquare newLocation){
+		location.clearOccupant(g);
+		location = newLocation;
+		xPos = newLocation.GetXPos();
+		yPos = newLocation.GetYPos();
+		newLocation.setOccupant(this);
+		Draw(g);
+	}
 }
 
 	

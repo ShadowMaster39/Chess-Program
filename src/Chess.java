@@ -12,10 +12,11 @@ public class Chess extends Applet implements ActionListener, MouseListener{
 	private Board Game;
 	private Graphics gApplet;
 	int [] Coords = new int[2];
-	boolean StartSquareSelcted = false;
+	boolean StartSquareSelected = false;
 	boolean TargetSquareSelected = false;
 	private BoardSquare StartSquare;
 	private BoardSquare TargetSquare;
+	private BoardSquare tempSquare;
 	private PaintActions Action = PaintActions.NoAction;
 	
 	
@@ -49,26 +50,48 @@ public class Chess extends Applet implements ActionListener, MouseListener{
     		case SelectFirstSquare: 
     			if (StartSquare != null){
     					StartSquare.selectSquare(g);
-				}
+    					StartSquareSelected = true;
+    					tempSquare = StartSquare;
+    					}
 				break;
-    		case SelectSecondSquare: break;
+    		case SelectSecondSquare: 
+    			if (TargetSquare != null){
+						TargetSquare.selectSquare(g);
+						TargetSquareSelected = true;
+						
+						StartSquare.moveEffect(g);
+						TargetSquare.moveEffect(g);
+						
+						StartSquareSelected = false;
+						TargetSquareSelected = false;
+						
+						try{
+						Thread.sleep(500);
+						} catch (Exception e){
+							
+						}
+						
+						ChessPiece ToBeMoved = StartSquare.getOccupant();
+						ToBeMoved.Move(g, TargetSquare);
+						
+						StartSquare.deselectSquare(g);
+						TargetSquare.deselectSquare(g);
+						
+						
+							
+				}
+    			break;
     		case InvalidSelection: break;
     		case DeselectSquare: 
     			StartSquare.deselectSquare(g);
+    			StartSquareSelected = false;
     			break;
-    			
+    		case WhiteBottom: break;
+    		case BlackBottom: break;
     		default: break;
     			
     	}
-    	
     	Action = PaintActions.NoAction;
-    	
-    	
-    	
-    	
-    	//g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
-		//g.setColor(Color.black);
-		//g.drawString("Mouse",100,100);
     }
     
     
@@ -82,16 +105,20 @@ public class Chess extends Applet implements ActionListener, MouseListener{
 	
 	
 	private void setActionMouseClick(BoardSquare TestSubject){
-		if (TestSubject.isSelected){
-			Action = PaintActions.DeselectSquare;
-			StartSquare = TestSubject;
+		if (TestSubject != null){
+			if (TestSubject.isSelected){
+				Action = PaintActions.DeselectSquare;
+				StartSquare = TestSubject;
+			}
+			else if (!(TestSubject.isSelected)  && !(StartSquareSelected) && TestSubject.isOccupied()){
+				Action = PaintActions.SelectFirstSquare;
+				StartSquare = TestSubject;
+			}
+			else if (!(TestSubject.isSelected) && StartSquareSelected){
+				Action = PaintActions.SelectSecondSquare;
+				TargetSquare = TestSubject;
+			}
 		}
-		else if (!(TestSubject.isSelected)){
-			Action = PaintActions.SelectFirstSquare;
-			StartSquare = TestSubject;
-		}
-		
-		
 	}
 	
 	public void mouseEntered (MouseEvent me) {} 

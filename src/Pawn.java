@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.*;
 
 public class Pawn extends ChessPiece{
@@ -35,7 +34,16 @@ public class Pawn extends ChessPiece{
            //Base
               g.fillRect(xPos+25, yPos+77, 41, 10);
 	        }
-		}
+	
+	public void Move(Graphics g, BoardSquare newLocation){
+		location.clearOccupant(g);
+		location = newLocation;
+		xPos = newLocation.GetXPos();
+		yPos = newLocation.GetYPos();
+		newLocation.setOccupant(this);
+		Draw(g);
+	}
+	}
 		
 		
 

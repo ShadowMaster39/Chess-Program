@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.*;
 
 public class Rook extends ChessPiece{
@@ -39,6 +38,16 @@ public class Rook extends ChessPiece{
 				temp = temp + 20;
 			}
 	}
+	
+	public void Move(Graphics g, BoardSquare newLocation){
+		location.clearOccupant(g);
+		location = newLocation;
+		xPos = newLocation.GetXPos();
+		yPos = newLocation.GetYPos();
+		newLocation.setOccupant(this);
+		Draw(g);
+	}
+	
 }
 	
 	

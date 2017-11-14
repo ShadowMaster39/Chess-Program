@@ -5,5 +5,7 @@ public enum PaintActions {
 	SelectSecondSquare,
 	DeselectSquare,
 	InvalidSelection,
-	ResetBoard
+	ResetBoard,
+	BlackBottom,
+	WhiteBottom
 }

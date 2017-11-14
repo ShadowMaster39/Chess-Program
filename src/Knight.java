@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.*;
 
 public class Knight extends ChessPiece{
@@ -33,6 +32,16 @@ public class Knight extends ChessPiece{
 			//Base
 				g.fillRect(xPos+17, yPos+74, 56, 11);
 		}
+	
+	public void Move(Graphics g, BoardSquare newLocation){
+		location.clearOccupant(g);
+		location = newLocation;
+		xPos = newLocation.GetXPos();
+		yPos = newLocation.GetYPos();
+		newLocation.setOccupant(this);
+		Draw(g);
+	}
+	
 }
 		
 		

@@ -1,8 +1,9 @@
-import java.awt.Color;
 import java.awt.*;
 
 public class ChessPiece {
 	public BoardSquare location;
+	public BoardSquare tempLocation;
+	
 	public Color pieceColor;
 		
 	
@@ -10,9 +11,9 @@ public class ChessPiece {
 		
 	}
 	
-	public void Move(){
+	public void Move(Graphics g, BoardSquare newLocation){
 		
-	}
+		}
 
 	public void Take(){
 		

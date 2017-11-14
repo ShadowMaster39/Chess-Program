@@ -63,6 +63,14 @@ public class BoardSquare {
 		isSelected = true;
 	}
 	
+	public void moveEffect(Graphics g){
+		g.setColor(Color.yellow);
+		g.drawRect(xPos, yPos, 89, 89);
+		g.drawRect(xPos+1, yPos+1, 87, 87);
+		g.drawRect(xPos+2, yPos+2, 85, 85);
+		isSelected = false;
+	}
+	
 	public void deselectSquare(Graphics g){
 		draw(g);
 		if (occupied){
@@ -78,6 +86,6 @@ public class BoardSquare {
 	public void clearOccupant(Graphics g){
 		draw(g);
 		Occupant = null;
-		occupied=false;
+		occupied = false;
 	}
 }

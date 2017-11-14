@@ -31,17 +31,21 @@ public class Board {
 		int ySquare = y - yOfA1;
 		int col;
 		int row;
-			
-		//Find x
-		col = xSquare / 90;			
-		//Find y
-		row = ySquare / 90;
-		//Find Index
-		//index = (col -1) + 8*(row-1);	
-		index = (col) + 8*(row);
-			if (index <= 63 && index >= 0){
-				ClickedSquare = ChessBoard[index];
+		
+		if (xSquare >= 0 && ySquare >= 0){
+			//Find x
+			col = xSquare / 90;			
+			//Find y
+			row = ySquare / 90;
+			//Find Index
+			//index = (col -1) + 8*(row-1);	
+			if (col < 8 && row < 8){
+				index = (col) + 8*(row);
+				if (index <= 63 && index >= 0){
+						ClickedSquare = ChessBoard[index];
+				}
 			}
+		}	
 		return ClickedSquare;
 		
 	}
@@ -60,6 +64,11 @@ public class Board {
         drawBothQueens(g);
         drawBothKings(g);
     }
+	
+	private void startGameWhite(Graphics g){
+		
+		
+	}
     
     private void IntializeBoard(Graphics g, int x, int y){
 		xOfA1 = x;
