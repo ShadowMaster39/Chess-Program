@@ -42,6 +42,22 @@ public class Knight extends ChessPiece{
 		Draw(g);
 	}
 	
+	public boolean isLegalMove(int Currentindex, int Movedindex, BoardSquare[] Board){
+		int CurrentMaxIndex = (((Currentindex / 8) + 1) * 8) - 1;
+		int MovedMaxIndex = (((Movedindex / 8) + 1) * 8) - 1;
+		int CurrentRow = ((Currentindex / 8) + 1);
+		int CurrentCol = 8 - (CurrentMaxIndex - Currentindex) + 1;
+		int MovedRow =((Movedindex / 8) + 1);;
+		int MovedCol = 8 - (MovedMaxIndex - Movedindex) + 1;
+			
+		
+		isLegal = ((Math.abs(CurrentRow - MovedRow) == 2 && Math.abs(CurrentCol - MovedCol) == 1) ^ (Math.abs(CurrentRow - MovedRow) == 1 && Math.abs(CurrentCol - MovedCol) == 2))? true : false;
+		
+		
+		
+		return isLegal;
+	}
+	
 }
 		
 		

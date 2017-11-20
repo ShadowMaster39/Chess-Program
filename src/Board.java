@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -49,7 +50,34 @@ public class Board {
 		return ClickedSquare;
 		
 	}
-	
+		
+	public int getIndex(BoardSquare ClickedSquare) {
+		int x = ClickedSquare.GetXPos();
+		int y = ClickedSquare.GetYPos();
+		int index = 0;
+		int xSquare = x - xOfA1;
+		int ySquare = y - yOfA1;
+		int col;
+		int row;
+		
+		if (xSquare >= 0 && ySquare >= 0){
+			//Find x
+			col = xSquare / 90;			
+			//Find y
+			row = ySquare / 90;
+			//Find Index
+			//index = (col -1) + 8*(row-1);	
+			if (col < 8 && row < 8){
+				index = (col) + 8*(row);
+				if (index <= 63 && index >= 0){
+						ClickedSquare = ChessBoard[index];
+				}
+			}
+		}	
+		return index;
+		
+	}
+
 	public void ResetBoard(Graphics g){
 		startGame(g);
 	}
@@ -65,11 +93,6 @@ public class Board {
         drawBothKings(g);
     }
 	
-	private void startGameWhite(Graphics g){
-		
-		
-	}
-    
     private void IntializeBoard(Graphics g, int x, int y){
 		xOfA1 = x;
 		yOfA1 = y;
@@ -183,5 +206,6 @@ public class Board {
 		King WK = new King(g,ChessBoard[SquarePosition.valueOf("A5").ordinal()], 0);
 		King BK = new King(g,ChessBoard[SquarePosition.valueOf("H5").ordinal()], 1);    	
     }
+
 }
 

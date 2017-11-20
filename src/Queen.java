@@ -47,6 +47,44 @@ public class Queen extends ChessPiece{
 		newLocation.setOccupant(this);
 		Draw(g);
 	}
+	
+	public boolean isLegalMove(int Currentindex, int Movedindex, BoardSquare[] Board){
+		if(this.movedLikeBishop(Currentindex, Movedindex) ^ this.movedLikeRook(Currentindex, Movedindex)){
+			isLegal = true;
+		}
+		return isLegal;
+	}
+	
+	private boolean movedLikeRook(int Currentindex, int Movedindex){
+		int CurrentMaxIndex = (((Currentindex / 8) + 1) * 8) - 1;
+		int CurrentMinIndex = CurrentMaxIndex - 7;
+		boolean vertical = false;
+		boolean horizontal = false;
+		boolean movedRook = false;
+		
+				vertical = (((Movedindex - Currentindex) % 8) == 0)? true : false;
+				horizontal = (Movedindex >= CurrentMinIndex && Movedindex <= CurrentMaxIndex)? true : false; 
+				
+			movedRook = ((vertical) ^ (horizontal))? true : false;
+			return movedRook;
+	}
+	
+	private boolean movedLikeBishop(int Currentindex, int Movedindex){
+		int CurrentMaxIndex = (((Currentindex / 8) + 1) * 8) - 1;
+		int MovedMaxIndex = (((Movedindex / 8) + 1) * 8) - 1;
+		int CurrentRow = ((Currentindex / 8) + 1);
+		int CurrentCol = 8 - (CurrentMaxIndex - Currentindex) + 1;
+		int MovedRow =((Movedindex / 8) + 1);;
+		int MovedCol = 8 - (MovedMaxIndex - Movedindex) + 1;
+		boolean movedBishop = false;
+			
+			
+		movedBishop = (Math.abs(CurrentRow - MovedRow) == Math.abs(CurrentCol - MovedCol))? true : false;
+			
+		
+		
+		return movedBishop;
+	}
 }
 		
 		

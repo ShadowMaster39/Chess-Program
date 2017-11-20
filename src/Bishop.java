@@ -1,3 +1,4 @@
+
 import java.awt.*;
 
 public class Bishop extends ChessPiece{
@@ -50,6 +51,22 @@ public class Bishop extends ChessPiece{
 		yPos = newLocation.GetYPos();
 		newLocation.setOccupant(this);
 		Draw(g);
+	}
+	
+	public boolean isLegalMove(int Currentindex, int Movedindex, BoardSquare[] Board){
+		int CurrentMaxIndex = (((Currentindex / 8) + 1) * 8) - 1;
+		int MovedMaxIndex = (((Movedindex / 8) + 1) * 8) - 1;
+		int CurrentRow = ((Currentindex / 8) + 1);
+		int CurrentCol = 8 - (CurrentMaxIndex - Currentindex) + 1;
+		int MovedRow =((Movedindex / 8) + 1);;
+		int MovedCol = 8 - (MovedMaxIndex - Movedindex) + 1;
+			
+			
+	    isLegal = (Math.abs(CurrentRow - MovedRow) == Math.abs(CurrentCol - MovedCol))? true : false;
+		
+		
+		
+		return isLegal;
 	}
 }
 

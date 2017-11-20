@@ -1,3 +1,4 @@
+
 import java.awt.*;
 
 public class King extends ChessPiece{
@@ -20,10 +21,7 @@ public class King extends ChessPiece{
 	}
 	
 	
-	public void Draw(Graphics g){
-		//Set Variables
-			int[] xSB = {xPos+23,xPos+23,xPos+69,xPos+69};  
-			int[] ySB = {yPos+75,yPos+55,yPos+55,yPos+75}; 
+	public void Draw(Graphics g){ 
 		//Color Selector
 			g.setColor(pieceColor);
         //Drawing   
@@ -48,6 +46,45 @@ public class King extends ChessPiece{
 		yPos = newLocation.GetYPos();
 		newLocation.setOccupant(this);
 		Draw(g);
+	}
+	
+	public boolean isLegalMove(int Currentindex, int Movedindex, BoardSquare[] Board){
+		
+		isLegal = (this.movedLikeBishop(Currentindex, Movedindex) ^ this.movedLikeRook(Currentindex, Movedindex))? true : false;
+		
+		
+		return isLegal;
+	}
+	
+	private boolean movedLikeBishop(int Currentindex, int Movedindex){
+		int CurrentMaxIndex = (((Currentindex / 8) + 1) * 8) - 1;
+		int MovedMaxIndex = (((Movedindex / 8) + 1) * 8) - 1;
+		int CurrentRow = ((Currentindex / 8) + 1);
+		int CurrentCol = 8 - (CurrentMaxIndex - Currentindex) + 1;
+		int MovedRow =((Movedindex / 8) + 1);;
+		int MovedCol = 8 - (MovedMaxIndex - Movedindex) + 1;
+		boolean movedBishop = false;
+			
+			if ((Math.abs(CurrentRow - MovedRow) == Math.abs(CurrentCol - MovedCol)) && Math.abs(CurrentRow - MovedRow) == 1){
+				movedBishop = true;
+			}
+		
+		
+		return movedBishop;
+	}
+	
+	private boolean movedLikeRook(int Currentindex, int Movedindex){
+		int CurrentMaxIndex = (((Currentindex / 8) + 1) * 8) - 1;
+		int CurrentMinIndex = CurrentMaxIndex - 7;
+		boolean vertical = false;
+		boolean horizontal = false;
+		boolean movedRook = false;
+		
+				vertical = (Math.abs((Movedindex - Currentindex)) == 8)? true : false;
+				horizontal = (Math.abs((Movedindex - Currentindex)) == 1)? true : false; 
+				
+			movedRook = ((vertical) ^ (horizontal))? true : false;
+			return movedRook;
 	}
 }
 		

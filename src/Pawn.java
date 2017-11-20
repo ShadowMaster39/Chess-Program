@@ -1,8 +1,12 @@
+
 import java.awt.*;
 
 public class Pawn extends ChessPiece{
 	private int xPos;
 	private int yPos;
+	private boolean hasMoved = false;
+		
+	
 	
 	public Pawn(Graphics g, BoardSquare square, int color){
 		location = square;
@@ -43,7 +47,38 @@ public class Pawn extends ChessPiece{
 		newLocation.setOccupant(this);
 		Draw(g);
 	}
+	
+	public boolean isLegalMove(int Currentindex, int Movedindex, BoardSquare[] Board){
+		
+		if(!(hasMoved)) {
+			if(this.pieceColor == Color.lightGray) {
+				isLegal = ((Movedindex == Currentindex + 8) || (Movedindex == Currentindex + 16))? true : false;
+				if(isLegal == true){
+					hasMoved = true;
+				}
+			}
+			else if (this.pieceColor == Color.black) {
+				isLegal = (Movedindex == Currentindex - 8 || (Movedindex == Currentindex - 16))? true : false;
+				if(isLegal == true){
+					hasMoved = true;
+				}
+			}
+		}
+		else if(hasMoved) {
+			if(this.pieceColor == Color.lightGray) {
+				isLegal = (Movedindex == Currentindex + 8)? true : false;
+			}
+			else if (this.pieceColor == Color.black) {
+				isLegal = (Movedindex == Currentindex - 8)? true : false;
+			}
+		}
+		
+		
+		return isLegal;
 	}
+	
+	
+}
 		
 		
 

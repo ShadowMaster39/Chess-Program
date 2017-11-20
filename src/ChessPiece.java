@@ -1,11 +1,12 @@
+
+
 import java.awt.*;
 
 public class ChessPiece {
 	public BoardSquare location;
 	public BoardSquare tempLocation;
-	
 	public Color pieceColor;
-		
+	public boolean isLegal = false;
 	
 	public void Draw(Graphics g){
 		
@@ -23,5 +24,9 @@ public class ChessPiece {
 		return location;
 	}
 	
+	public boolean isLegalMove(int Currentindex, int Movedindex, BoardSquare[] Board) {
+		return isLegal;
+	}
+
 	
 }

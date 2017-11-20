@@ -1,4 +1,5 @@
 
+
 public enum SquarePosition {
 	A1,
 	A2,
